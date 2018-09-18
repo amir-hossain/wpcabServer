@@ -26,7 +26,7 @@ namespace WpcabServer.Controllers
         }
 
         // POST api/values
-        [HttpPost("InserUser")]
+        [HttpPost("InsertUser")]
         public bool InserUser([FromBody]User user)
         {
             var result =Connector.InsertUser(user);
