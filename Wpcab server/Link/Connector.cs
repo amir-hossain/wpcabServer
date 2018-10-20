@@ -48,11 +48,12 @@ namespace WpcabServer.Link
             var result = database.GetCollection<User>(UserCollection);
             if (page > 1)
             {
-                users = await result.Find(new BsonDocument()).Skip(10).Limit(10).ToListAsync();
+                users = await result.Find(new BsonDocument()).Skip((page - 1) * 10).Limit(10).ToListAsync();
             }
             else
             {
-                users = await result.Find(new BsonDocument()).Skip((page-1)*10).Limit(10).ToListAsync();
+                users = await result.Find(new BsonDocument()).Limit(10).ToListAsync();
+                
             }
            
         
