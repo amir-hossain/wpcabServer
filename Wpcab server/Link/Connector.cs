@@ -25,16 +25,6 @@ namespace WpcabServer.Link
         }
 
 
-        private  string getNextId(List<User> users)
-        {
-            string nextId = null;
-            if (users.Count > 10)
-            {
-                nextId = users[10].ID;
-            }
-
-            return nextId;
-        }
 
         public bool InsertUser(User user)
         {
@@ -52,16 +42,24 @@ namespace WpcabServer.Link
             }
         }
 
-        public async Task<Response> FetchUser()
+        public async Task<Response> FetchUser(int page)
         {
+            List<User> users = null;
             var result = database.GetCollection<User>(UserCollection);
-            //var cursor = await result.FindAsync(new BsonDocument());
-            var cursor = result.Find(new BsonDocument()).Limit(11);
-            List<User> users = await cursor.ToListAsync();
-            string nextId = getNextId(users);
+            if (page > 1)
+            {
+                users = await result.Find(new BsonDocument()).Skip(10).Limit(10).ToListAsync();
+            }
+            else
+            {
+                users = await result.Find(new BsonDocument()).Skip((page-1)*10).Limit(10).ToListAsync();
+            }
+           
+        
             long total = await result.CountDocumentsAsync(x => true);
 
-            return new Response(users, nextId, total);
+            return new Response(users,total);
         }
+
     }
 }

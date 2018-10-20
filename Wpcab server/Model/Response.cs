@@ -7,15 +7,13 @@ namespace WpcabServer.Model
 {
     public class Response
     {
-        public Response(IEnumerable<User> users, string nextId, long total)
+        public Response(IEnumerable<User> users, long total)
         {
             Users = users;
-            NextId = nextId;
             Total = total;
         }
 
         public IEnumerable<User> Users { get; set; }
-        public string NextId { get; set; }
         public long Total { get; set; }
     }
 }

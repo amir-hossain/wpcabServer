@@ -21,10 +21,10 @@ namespace WpcabServer.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("GetAllUser")]
-        public Task<Response> GetAllUser()
+        [HttpGet("getUser/{page}")]
+        public Task<Response> GetAllUser(int page)
         {
-            var result = connector.FetchUser();
+            var result = connector.FetchUser(page);
 
             return result;
 
