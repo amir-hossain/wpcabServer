@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +11,11 @@ namespace WpcabServer.Model
 {
     public class User
     {
+        //must match with mongo id schema
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ID { get; set; }
+
         public string FullName { get; set; }
 
         public string Gender { get; set; }

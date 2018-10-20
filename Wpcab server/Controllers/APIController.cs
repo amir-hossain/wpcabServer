@@ -8,9 +8,11 @@ using WpcabServer.Link;
 
 namespace WpcabServer.Controllers
 {
+    
     [Route("api/")]
     public class APIController : Controller
     {
+        private IConnector connector = Connector.getInstance();
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,17 +21,20 @@ namespace WpcabServer.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetAllUser")]
+        public Task<Response> GetAllUser()
         {
-            return "value";
+            var result = connector.FetchUser();
+
+            return result;
+
         }
 
         // POST api/values
         [HttpPost("InsertUser")]
         public bool InserUser([FromBody]User user)
         {
-            var result =Connector.InsertUser(user);
+            var result =connector.InsertUser(user);
 
             return result;
         }
