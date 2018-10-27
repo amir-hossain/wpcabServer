@@ -42,7 +42,7 @@ namespace WpcabServer.Link
             }
         }
 
-        public async Task<Response> FetchUser(int page)
+        public async Task<Response> GetUsersByPage(int page)
         {
             List<User> users = null;
             var result = database.GetCollection<User>(UserCollection);
@@ -62,5 +62,12 @@ namespace WpcabServer.Link
             return new Response(users,total);
         }
 
+        public User GetUserById(string id)
+        {
+            var result = database.GetCollection<User>(UserCollection);
+
+            return result.Find(k => k.ID.Equals(id)).FirstOrDefault();
+
+        }
     }
 }

@@ -20,17 +20,26 @@ namespace WpcabServer.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("getUser/{page}")]
-        public Task<Response> GetAllUser(int page)
+        [HttpGet("getUsersByPage/{page}")]
+        public Task<Response> GerUsersByPage(int page)
         {
-            var result = connector.FetchUser(page);
+            var result = connector.GetUsersByPage(page);
+
+            return result;
+
+        }
+
+        [HttpGet("getUserById/{id}")]
+        public User GetUserById(string id)
+        {
+            var result = connector.GetUserById(id);
 
             return result;
 
         }
 
         // POST api/values
-        [HttpPost("InsertUser")]
+        [HttpPost("insertUser")]
         public bool InserUser([FromBody]User user)
         {
             var result =connector.InsertUser(user);

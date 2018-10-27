@@ -8,6 +8,8 @@ namespace WpcabServer
     {
          bool InsertUser(User user);
 
-        Task<Response> FetchUser(int page);
+        Task<Response> GetUsersByPage(int page);
+
+        User GetUserById(string id);
     }
 }
