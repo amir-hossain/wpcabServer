@@ -1,10 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WpcabServer.Model;
-using WpcabServer.Link;
+using WpcabServer.Utils;
 
 namespace WpcabServer.Controllers
 {
@@ -12,7 +11,7 @@ namespace WpcabServer.Controllers
     [Route("api/")]
     public class APIController : Controller
     {
-        private IConnector connector = Connector.getInstance();
+        private IConnector connector = Factory.GetConnector();
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
