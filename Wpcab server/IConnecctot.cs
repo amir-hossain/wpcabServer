@@ -11,5 +11,7 @@ namespace WpcabServer
         Task<Response> GetUsersByPage(int page);
 
         User GetUserById(string id);
+
+        bool EditUser(User user);
     }
 }

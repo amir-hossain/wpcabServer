@@ -36,7 +36,7 @@ namespace WpcabServer.Model
 
         public string Occupation { get; set; }
 
-        public string ParmanentAddress { get; set; }
+        public string PermanentAddress { get; set; }
 
         public string Zone { get; set; }
 

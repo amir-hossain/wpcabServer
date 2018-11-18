@@ -7,7 +7,7 @@ using WpcabServer.Utils;
 
 namespace WpcabServer.Controllers
 {
-    
+
     [Route("api/")]
     public class APIController : Controller
     {
@@ -42,15 +42,17 @@ namespace WpcabServer.Controllers
         [HttpPost("insertUser")]
         public bool InserUser([FromBody]User user)
         {
-            var result =connector.InsertUser(user);
+            var result = connector.InsertUser(user);
 
             return result;
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("editUser")]
+        public bool editUser([FromBody] User user)
         {
+            var result = connector.EditUser(user);
+
+            return result;
         }
 
         // DELETE api/values/5

@@ -16,7 +16,7 @@ namespace WpcabServer.Link
 
         private static IMongoDatabase database = DBContext.getInstance();
 
-        private static string UserCollection="user";
+        private static string collectionName="user";
 
      
         public static Connector getInstance()
@@ -28,11 +28,11 @@ namespace WpcabServer.Link
 
         public bool InsertUser(User user)
         {
-            var result = database.GetCollection<User>(UserCollection).InsertOneAsync(user);
+            var result = database.GetCollection<User>(collectionName).InsertOneAsync(user);
 
             result.Wait();
 
-            if (result.IsCompleted)
+            if (result.IsCompletedSuccessfully)
             {
                 return true;
             }
@@ -42,10 +42,34 @@ namespace WpcabServer.Link
             }
         }
 
+        public bool EditUser(User user)
+        {
+            
+            var db = database.GetCollection<User>(collectionName);
+
+            var filer = Builders<User>.Filter.Eq(u => u.ID,user.ID);
+
+            var result=db.ReplaceOneAsync(filer, user);
+
+            result.Wait();
+
+            if (result.IsCompletedSuccessfully)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+ 
+        }
+
         public async Task<Response> GetUsersByPage(int page)
         {
             List<User> users = null;
-            var result = database.GetCollection<User>(UserCollection);
+            var result = database.GetCollection<User>(collectionName);
             if (page > 1)
             {
                 users = await result.Find(new BsonDocument()).Skip((page - 1) * 10).Limit(10).ToListAsync();
@@ -64,10 +88,12 @@ namespace WpcabServer.Link
 
         public User GetUserById(string id)
         {
-            var result = database.GetCollection<User>(UserCollection);
+            var result = database.GetCollection<User>(collectionName);
 
             return result.Find(k => k.ID.Equals(id)).FirstOrDefault();
 
         }
+
+
     }
 }
