@@ -22,6 +22,8 @@ namespace WpcabServer.Model
 
         public string FatherName { get; set; }
 
+        public string HusbandName { get; set; }
+
         public string MotherName { get; set; }
 
         public string DOB { get; set; }
@@ -37,6 +39,52 @@ namespace WpcabServer.Model
         public string Occupation { get; set; }
 
         public string PermanentAddress { get; set; }
+
+        public string PermanentAddressVillage{ get; set; }
+
+        public string PermanentAddressHouse{ get; set; }
+
+        public string PermanentAddressRoad{ get; set; }
+
+        public string PermanentAddressSector{ get; set; }
+
+        public string PermanentAddressBlock{ get; set; }
+
+        public string PermanentAddressSubdistrict{ get; set; }
+
+        public string PermanentAddressDristrict{ get; set; }
+
+        public string PermanentAddressPostOffice{ get; set; }
+
+        public string PermanentAddressPostalCode{ get; set; }
+
+        public string PermanentAddressCountry{ get; set; }
+
+        public string PermanentAddressNationality{ get; set; }
+
+        public string PermanentAddressNID{ get; set; }
+
+        public string PresentAddressVillage{ get; set; }
+
+        public string PresentAddressHouse{ get; set; }
+
+        public string PresentAddressRoad{ get; set; }
+
+        public string PresentAddressSector{ get; set; }
+
+        public string PresentAddressBlock{ get; set; }
+
+        public string PresentAddressSubDistrict{ get; set; }
+
+        public string PresentAddressDistrict{ get; set; }
+
+        public string PresentAddressPostOffice{ get; set; }
+
+        public string PresentAddressPostalCode{ get; set; }
+
+        public string PresentAddressCountry{ get; set; }
+
+        public string PresentAddressZone{ get; set; }
 
         public string Zone { get; set; }
 
