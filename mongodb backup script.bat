@@ -1,0 +1,1 @@
+mongodump --out "./db_backup"
